@@ -239,6 +239,7 @@ O Streamlit define `USE_MOCK_LLM=1` automaticamente quando não detecta CUDA.
 - [x] Dataset sintético/anônimo no repositório
 - [x] README completo (instalação, execução, env vars, arquitetura)
 - [x] Código Python modular
+- [x] Verificação E2E (`pytest tests/ -v` + smoke CLI/LangGraph com `USE_MOCK_LLM=1`)
 
 ### Relatório técnico
 
@@ -268,6 +269,15 @@ pytest tests/ -v
 ```
 
 Testes usam `USE_MOCK_LLM=1` e não exigem GPU.
+
+### Verificação E2E (smoke)
+
+```bash
+USE_MOCK_LLM=1 python -m assistant.cli --patient PAC-001 --query "Protocolo para febre?"
+USE_MOCK_LLM=1 python -m langgraph_flows.clinical_workflow --patient PAC-002 --query "Conduta?"
+```
+
+PAC-002 aciona o ramo `agente_alerta` (exame pendente).
 
 ---
 

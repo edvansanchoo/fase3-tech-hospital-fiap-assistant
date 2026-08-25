@@ -4,6 +4,8 @@ __pycache__/
 .venv/
 data/raw/
 logs/*.jsonl
+artifacts/*
+!artifacts/evaluation_report.json
 artifacts/lora_adapter/
 artifacts/chroma_db/
 *.pt

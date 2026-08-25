@@ -87,7 +87,7 @@ def main() -> None:
         for alert in result["alerts"]:
             print(f"  - {alert}")
     print("\nFontes:", result.get("sources", []))
-    print("Fluxo:", " → ".join(result.get("graph_path", [])))
+    print("Fluxo:", " -> ".join(result.get("graph_path", [])))
     if result.get("requires_human_validation"):
         print("\n[Requer validação do médico responsável]")
 
