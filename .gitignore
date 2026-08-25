@@ -8,3 +8,4 @@ artifacts/lora_adapter/
 artifacts/chroma_db/
 *.pt
 .ipynb_checkpoints/
+*.egg-info/
