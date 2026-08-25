@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+data/raw/
+logs/*.jsonl
+artifacts/lora_adapter/
+artifacts/chroma_db/
+*.pt
+.ipynb_checkpoints/
