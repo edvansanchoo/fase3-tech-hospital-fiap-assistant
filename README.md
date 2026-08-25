@@ -13,3 +13,11 @@ python fine_tuning/train.py --max-steps 2    # short GPU smoke test
 ```
 
 On **CPU-only** machines the script skips training, validates JSONL loading, and still writes a metrics stub (empty `epochs` array) so CI and local dev do not require a GPU.
+
+## Streamlit demo
+
+Interactive UI with LangChain assistant, LangGraph workflow, and live audit log tail. On CPU-only machines the app sets `USE_MOCK_LLM=1` automatically.
+
+```bash
+streamlit run streamlit_app/app.py
+```
