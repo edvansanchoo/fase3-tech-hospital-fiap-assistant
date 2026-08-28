@@ -14,8 +14,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
 from fine_tuning.formatting import format_sample_text
 
@@ -209,6 +214,8 @@ def run_training(args: argparse.Namespace) -> dict[str, Any]:
         "metric_for_best_model": "eval_loss",
         "greater_is_better": False,
         "report_to": "none",
+        "optim": "paged_adamw_8bit",
+        "fp16": True,
     }
     if args.max_steps is not None:
         training_kwargs["max_steps"] = args.max_steps

@@ -15,8 +15,13 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 from pathlib import Path
 from typing import Any
+
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
 from fine_tuning.formatting import format_instruction_sample
 from fine_tuning.train import gpu_available, load_jsonl

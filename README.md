@@ -97,7 +97,15 @@ Saída: `data/processed/train.jsonl`, `val.jsonl`, `test.jsonl`.
 
 ### 4. Fine-tuning LoRA (Colab ou GPU local)
 
-Treino completo em **Google Colab** (notebook `notebooks/02_fine_tuning_colab.ipynb`) ou via script:
+**Recomendado (como nas aulas): Google Colab + GPU + Google Drive**
+
+1. Abra [Google Colab](https://colab.research.google.com/), selecione **GPU** (Runtime → Change runtime type → T4)
+2. Abra `notebooks/02_fine_tuning_colab.ipynb` (upload ou GitHub)
+3. Adicione `HF_TOKEN` em **Secrets** (acesso a `meta-llama/Llama-2-7b-hf`)
+4. Execute todas as células — o notebook monta o Drive, faz login no Hugging Face, treina LoRA 4-bit e copia o adapter para `MyDrive/hospital-fiap-assistant/artifacts/`
+5. Baixe `artifacts/lora_adapter_colab.zip` e extraia em `artifacts/lora_adapter/` localmente
+
+**Alternativa: script local com GPU**
 
 ```bash
 python fine_tuning/train.py                  # 3 épocas (GPU)
@@ -150,6 +158,15 @@ Abas: Assistente LangChain | Fluxo LangGraph | Logs (últimas 10 linhas de `logs
 | `03_model_evaluation.ipynb` | ROUGE-L, checklist, curvas de loss |
 | `04_assistant_demo.ipynb` | `run_assistant` para PAC-001 |
 | `05_langgraph_flow_demo.ipynb` | `run_workflow` para os 5 pacientes |
+
+### 10. Versão JupyterLite (browser, sem instalação)
+
+Para rodar no [JupyterLite](https://jupyter.org/try-jupyter/lab/) — útil para demo rápida ou máquinas sem Python:
+
+1. Faça upload de `jupyterlite/hospital_fiap_assistant_lite.ipynb` e `jupyterlite/lite_core.py` no JupyterLite
+2. Execute todas as células
+
+Esta versão reproduz os conceitos das aulas da Fase 3 (dataset, LoRA simulado, RAG, chain, fluxo clínico, guardrails) em Python puro. **Não substitui** o treino LoRA real nem a entrega com LangChain/LangGraph nativos — veja [`jupyterlite/README.md`](jupyterlite/README.md).
 
 ---
 
@@ -292,6 +309,7 @@ hospital-fiap-assistant/
 ├── data/synthetic/      # Protocolos + seed SQLite
 ├── streamlit_app/       # UI demo
 ├── notebooks/           # 01–05
+├── jupyterlite/         # Versão browser (JupyterLite)
 ├── reports/             # relatorio_tecnico.md
 ├── artifacts/           # lora_adapter, chroma_db, métricas (gitignored)
 ├── logs/                # interactions.jsonl (gitignored)
